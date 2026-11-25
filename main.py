@@ -42,6 +42,10 @@ def validate(joke: str) -> None:
         raise SystemExit(f"joke is {len(joke)} characters, must be 1-140")
     if "\n" in joke or "\r" in joke:
         raise SystemExit("joke must be a single line")
+    if joke != joke.strip():
+        raise SystemExit("joke must not have leading or trailing whitespace")
+    if not joke.endswith("."):
+        raise SystemExit("joke must end on its punchline, with a period")
     if not any(not ch.isspace() for ch in joke):
         raise SystemExit("joke must contain a non-whitespace character")
 
